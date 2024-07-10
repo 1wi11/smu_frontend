@@ -131,8 +131,9 @@ const Searchoption = styled.option`
 // `
 
 const Thumbnail = styled.div`
-    width: 100%;
+    width: 85%;
     height: 40vh;
+    margin: 0 auto;
 
     display: block;
     align-items: center;
