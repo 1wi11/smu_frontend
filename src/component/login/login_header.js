@@ -90,7 +90,7 @@ const Headerlogin = (props) => {
     return (
         <Rectangle1>
             <Titlename onClick={navigateTohome}>공인바이</Titlename>
-            <Titlechat>채팅하기</Titlechat>
+            <Titlechat onClick={() => alert('준비중입니다.')}>채팅하기</Titlechat>
             <TitleUsername>{props.name}</TitleUsername>
         </Rectangle1>
     );
