@@ -17,6 +17,9 @@ import BoardDetail from '../component/board/BoardDetail';
 import BoardList from '../component/board/BoardList';
 import List from '../component/trade/list'
 import UpBoard from '../component/boardup/Upboard';
+import Selectpurchase from '../component/register/selectpurchase';
+import Purchase from '../component/register/purchase';
+import Input from '../component/boardup/input';
 
 const Background = styled.div`
     background-color: #F8F9FA;
@@ -99,6 +102,9 @@ function AppRouter() {
                     <Route path="/board/:idx" element={<BoardDetail/>}/>
                     <Route path="/list" element={<List/>}/>
                     <Route path="/upboard" element={<UpBoard/>}/>
+                    <Route path="/selectpurchase" element={<Selectpurchase/>}/>
+                    <Route path="/Purchase" element={<Purchase/>}/>
+                    <Route path="/Input" element={<Input/>}/>
                 </Routes>
                 {!hideHeaderAndFooter && <Footerindex />}
             </Rectangle>

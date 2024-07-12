@@ -200,8 +200,8 @@ const Uploadmain = () => {
 
     const navigate = useNavigate();
     
-    function navigateTobuy(){
-        navigate('/buy');
+    function navigateToselectpurchase(){
+        navigate('/selectpurchase');
     }
 
     return (
@@ -217,21 +217,21 @@ const Uploadmain = () => {
                 <Text3>* 매물 등록 가이드 보기</Text3>
             </Rectangle2>
             <Section1>
-                <Rectangle4 onClick={navigateTobuy}>
+                <Rectangle4 onClick={navigateToselectpurchase}>
                     <img src = {Apart} alt = "아파트" />
                     <Textapart>아파트</Textapart>
                 </Rectangle4>
-                <Rectangle5 onClick={navigateTobuy}>
+                <Rectangle5 onClick={() => alert('준비중입니다.')}>
                     <img src = {House} alt = "빌라,주택" />
                     <Texthouse>빌라,주택</Texthouse>
                 </Rectangle5>
             </Section1>
             <Section2>
-                <Rectangle6 onClick={navigateTobuy}>
+                <Rectangle6 onClick={() => alert('준비중입니다.')}>
                     <img src = {Bed} alt = "오피스텔" />
                     <Textbed>오피스텔</Textbed>
                 </Rectangle6>
-                <Rectangle7 onClick={navigateTobuy}>
+                <Rectangle7 onClick={() => alert('준비중입니다.')}>
                     <img src = {office} alt = "상가,사무실" />
                     <Textoffice>상가,사무실</Textoffice>
                 </Rectangle7>
