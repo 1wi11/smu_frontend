@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -96,54 +97,87 @@ const Blank = styled.div`
 
 const Input = () => {
     const navigate = useNavigate();
-    
     const [formData, setFormData] = useState({
         title: '',
         content: '',
         region: '',
         apart: '',
         address: '',
+        size: '',
         floor: '',
-        area: '',
         direction: '',
-        moveinDate: '',
+        availability: '',
         price: '',
-        image: null
+        image: null,
     });
+
+    const parseJwt = (token) => {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
+    };
 
     const handleInputChange = (e) => {
         const { name, value, type, files } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === 'file' ? files[0] : value
-        });
+
+        if (type === 'file') {
+            setFormData({
+                ...formData,
+                image: files[0],
+                email: parseJwt(localStorage.getItem("access_token")).email
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value,
+                email: parseJwt(localStorage.getItem("access_token")).email
+            });
+        }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // form submit logic
-    };
+        const formDataToSend = new FormData();
 
-    function navigateToupload() {
-        navigate('/upload');
-    }
+        Object.keys(formData).forEach((key) => {
+            if (key !== 'image') {
+                formDataToSend.append(key, formData[key]);
+            }
+        });
+
+        if (formData.image) {
+            formDataToSend.append("image", formData.image);
+        }
+
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/post/', formDataToSend, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            if (response.status === 201) {
+                navigate('/board');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
     return (
         <>
             <Section1>
-                <Back onClick={navigateToupload}>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;
-                </Back>
-                <Text1>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;매물을 등록해보세요.
-                </Text1>
+                <Back onClick={() => navigate('/upload')}>&lt;</Back>
+                <Text1>매물을 등록해보세요.</Text1>
             </Section1>
             <Form onSubmit={handleSubmit}>
                 <Label htmlFor="title">제목</Label>
                 <InputField type="text" id="title" name="title" value={formData.title} onChange={handleInputChange} required />
 
                 <Label htmlFor="content">매물 설명</Label>
-                <TextArea id="description" name="content" rows="4" value={formData.content} onChange={handleInputChange} required />
+                <TextArea id="content" name="content" rows="4" value={formData.content} onChange={handleInputChange} required />
 
                 <Label htmlFor="region">지역</Label>
                 <Select id="region" name="region" value={formData.region} onChange={handleInputChange} required>
@@ -180,17 +214,17 @@ const Input = () => {
                 <Label htmlFor="availability">입주일자</Label>
                 <InputField type="date" id="availability" name="availability" value={formData.availability} onChange={handleInputChange} required />
 
-                <Label htmlFor="price">가격 (만원)</Label>
-                <InputField type="number" id="price" name="price" value={formData.price} onChange={handleInputChange} required />
+                <Label htmlFor="price">가격</Label>
+                <InputField type="text" id="price" name="price" value={formData.price} onChange={handleInputChange} required />
 
                 <Label htmlFor="image">이미지</Label>
                 <InputField type="file" id="image" name="image" accept="image/*" onChange={handleInputChange} required />
 
                 <Button type="submit">등록하기</Button>
             </Form>
-            <Blank></Blank>
+            <Blank />
         </>
     );
-}
+};
 
 export default Input;

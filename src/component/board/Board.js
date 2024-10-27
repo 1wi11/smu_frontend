@@ -1,7 +1,7 @@
 import React from 'react';
 import KakaoMap from '../map/kakaomap'
 import styled from 'styled-components';
-import apart from '../../images/apart_2.png';
+// import apart from '../../images/apart_2.png';
 import summary from '../../images/summary.png';
 
 /* 부동산게시글 */

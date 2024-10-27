@@ -112,6 +112,10 @@ const Selectpurchase = () => {
     function navigateTopurchase(){
         navigate('/purchase');
     }
+    //10/16수정
+    function navigateToInput(){
+        navigate('/Input');
+    }
 
     return (
         <>
@@ -128,8 +132,8 @@ const Selectpurchase = () => {
                     <Title>등기부등본을 등록하시겠습니까?</Title>
                     <Description>등기부등본을 구매하시면, 공인바이에서 제공하는 등기부등본 요약 서비스를 무료로 이용하실 수 있습니다. 이 서비스는 매물을 검증함으로써, 매수자에게 신뢰도를 제공하여 거래 성사 가능성을 높입니다.<br />공인바이와 함께 더 나은 부동산 거래 경험을 만들어 보세요.</Description>
                     <Buttongroup>
-                        <Button onClick={navigateTopurchase}>예</Button>
-                        <Button onClick={() => alert('게시물 작성 페이지로 이동합니다.')}>아니오</Button>
+                        <Button onClick={navigateTopurchase}>예</Button>             
+                        <Button onClick={() => {alert('게시물 작성 페이지로 이동합니다.'); navigateToInput();}}>아니오</Button> 
                     </Buttongroup>
                 </Container>
             </Section2>

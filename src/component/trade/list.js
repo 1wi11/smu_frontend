@@ -117,22 +117,26 @@ const Searchoption = styled.option`
     line-height: normal;
 `
 
-const Section1 = styled.div`
-    width: 95%;
-    height: 40%;
-    margin: 1% auto 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-`
+// const Section1 = styled.div`
+//     width: 95%;
+//     height: 40%;
+//     margin: 1% auto 0 auto;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-evenly;
+// `
 
 const Thumbnail = styled.div`
-    width: 40%;
-    height: 100%;
+    width: 85%;
+    height: 40vh;
+
+    margin: 0 auto;
 
     display: block;
     align-items: center;
     justify-content: space-between;
+
+    cursor: pointer;
 `
 // 매물이미지 입니다, 현재는 div로 해놓았고 후에 img로 바꾸어야합니다
 const Image = styled.div`
@@ -198,12 +202,19 @@ const Title = styled.div`
 /* ------footer부분이 내용을 가려서 공백으로 추가했습니다.------ */
 const Blank = styled.div` 
     width: 60%;
-    height: 7%;
+    height: 25%;
     margin: 0 auto; /*마진 : 0(상하) auto(좌우 마진값 오토로 가운데 정렬)*/
     background-color: #FFFFFF;
 `
+const Gridcontainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2%; /* 간격을 조절할 수 있습니다 */
+
+`
+
 // 반복문 배열
-const items = new Array(5).fill({
+const items = new Array(10).fill({
     cost: '월세 ****/****원',
     apartName: '아파트 이름',
     description: '층 | 면적',
@@ -232,19 +243,17 @@ const List = () => {
             </Search>
             <Stroke2></Stroke2>
 
-            {items.map((item, index) => (
-                <Section1 key={index}>
-                    {[...Array(2)].map((_, i) => (
-                        <Thumbnail key={i}>
-                            <Image />
-                            <Cost>{item.cost}</Cost>
-                            <Apartname>{item.apartName}</Apartname>
-                            <Description>{item.description}</Description>
-                            <Title>{item.title}</Title>
-                        </Thumbnail>
-                    ))}
-                </Section1>
-            ))}
+            <Gridcontainer>
+                {items.map((item, index) => (
+                    <Thumbnail key={index}>
+                        <Image />
+                        <Cost>{item.cost}</Cost>
+                        <Apartname>{item.apartName}</Apartname>
+                        <Description>{item.description}</Description>
+                        <Title>{item.title}</Title>
+                    </Thumbnail>
+                ))}
+            </Gridcontainer>
 
             <Blank></Blank>
         </>
