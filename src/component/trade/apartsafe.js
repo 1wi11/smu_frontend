@@ -206,6 +206,22 @@ const Blank = styled.div`
     margin: 0 auto; /*마진 : 0(상하) auto(좌우 마진값 오토로 가운데 정렬)*/
     background-color: #FFFFFF;
 `
+/* ------설명------ */
+const Explanation = styled.div` 
+    width: 58%;
+    height: 15%;
+    margin: 0 auto; /*마진 : 0(상하) auto(좌우 마진값 오토로 가운데 정렬)*/
+    background-color: #FFFFFF;
+    border: 1.5px solid #000000;
+    border-radius: 18px;
+
+    padding: 1% 1%;
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 1.0vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`
 
 const Apartsafe = () => {
     return (
@@ -228,6 +244,11 @@ const Apartsafe = () => {
                     <Textsummary className="Textsummary">자세한 요약 확인하기</Textsummary>
                 </Summaryrectangle>
             </Summary>
+
+            {/* 설명 */}
+            <Texta>매물 소개글</Texta>
+            <Explanation>이 매물은 ~~~~~</Explanation>
+
             {/* 거래정보 */}
             <Texta>거래정보</Texta>
             <Strokea></Strokea>

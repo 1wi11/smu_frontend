@@ -46,6 +46,10 @@ const Footerindex = () => {
     navigate('/');
   }
 
+  function navigateTotip(){
+    navigate('/tip');
+  }
+  
   function navigateToaboutus(){
     navigate('/aboutus');
   }
@@ -57,7 +61,7 @@ const Footerindex = () => {
           &nbsp;&nbsp;&nbsp;홈
         </ImgHome>
         <ImgTip>
-          <img src={Tip} alt="팁" />
+          <img src={Tip} onClick={navigateTotip} alt="팁" />
           <br />
           &nbsp;&nbsp;팁
         </ImgTip>

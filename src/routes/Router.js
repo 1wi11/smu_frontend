@@ -20,6 +20,7 @@ import UpBoard from '../component/boardup/Upboard';
 import Selectpurchase from '../component/register/selectpurchase';
 import Purchase from '../component/register/purchase';
 import Input from '../component/boardup/input';
+import Tips from '../component/register/tip';
 
 const Background = styled.div`
     background-color: #F8F9FA;
@@ -105,6 +106,8 @@ function AppRouter() {
                     <Route path="/selectpurchase" element={<Selectpurchase/>}/>
                     <Route path="/Purchase" element={<Purchase/>}/>
                     <Route path="/Input" element={<Input/>}/>
+                    <Route path="/tip" element={<Tips />} />
+                    
                 </Routes>
                 {!hideHeaderAndFooter && <Footerindex />}
             </Rectangle>
